@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>HOLLyBOAD</title>
+
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+}
+body{
+    color: blue;
+    /* background-color:rgb(200,200,200); */
+}
+.container{
+    padding: 5px;
+    padding-bottom: 70px;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1px;
+    font-size: 12px;
+}
+.game-name{
+    font-size: 20px;
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 2px;
+}
+
+.nav-ctn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    border-bottom:1px dotted blueviolet;
+    color: white;
+    background-color: black;
+    .no-div,.setting-div{
+        width: 15%;
+    }
+    .names-div{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        p{
+            width: 33%;
+        }
+    }
+    button{
+        height: 40px;
+        width: 100%;
+        background: none;
+        border: none;
+        color:white;
+    }
+}
+.item-div{
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    border-bottom: 1px dotted blueviolet;
+    .no,.edit-div{
+        width: 15%;
+    }
+    .p1,.p2,.p3{
+            width: 33%;
+        }
+    button{
+        width: 100%;
+        background: none;
+        border: none;
+        color: blue;
+    }
+}
+.total-display{
+    margin: 20px 0;
+    height: 25px;
+    border-top:1px solid rgb(255, 0, 0) ;
+    border-bottom:1px solid rgb(255, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    color:blue;
+    .total-text,.empty{
+        width: 15%;
+        font-size: 12px;
+    }
+    .p1total-text,.p2total-text,
+    .p3total-text{
+            width: 33%;
+        }
+}
+.lists-ctn{
+    position: fixed;
+    background-color: rgb(207, 205, 205);
+    right: 5px;
+    color: black;
+    li{
+        cursor: pointer;
+        padding: 5px;
+        list-style: none;
+    }
+}
+input{
+    font-size: 16px;
+    height: 30px;
+    margin:5px 2px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: inset 3px 3px 2px grey, inset -3px -3px 2px white;   
+    background: rgb(200,200,200);
+    outline: none;
+    }
+.create-ctn{
+    background: rgb(200,200,200);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    input{
+        min-width: 100px;
+        box-shadow: inset 3px 3px 2px grey, inset -3px -3px 2px white;
+    }
+    .gamename-input{
+        grid-column: span 2;
+    }
+    #create-btn{
+        box-shadow: 2px 2px 2px grey, -2px -2px 2px white;
+        grid-column: span 2;
+        height: 50px;
+    }
+}
+#answer1,#answer2,#answer3{
+    width:25%;
+    height: 30px;
+    box-shadow: inset 3px 3px 2px grey, inset -3px -3px 2px white;
+}
+form{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+.append-ctn{
+    background: rgb(200,200,200);
+    padding: 5px;
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid rgb(158, 153, 153);
+}
+.inputs-ctn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.enter-btn,.update-btn{
+    height: 30px;
+    width: 25%;
+}
+.p1num-ctn,.p2num-ctn,.p3num-ctn{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+input{
+    font-size: 16px;
+    height: 30px;
+    margin:5px 2px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 2px 2px 2px grey, -2px -2px 2px white;
+    background: rgb(200,200,200);
+    outline: none;
+}
+input:hover{
+    box-shadow: inset 3px 3px 2px grey, inset -3px -3px 2px white;
+}
+.gameover-ctn{
+    margin-top: 10px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding: 20px 0 50px;
+    .gameover{
+        margin-bottom: 30px;
+        button{
+            font-size: larger;
+            width: 250px;
+            height: 50px;
+            padding: 5px 5px 0px 5px;
+            background: #03e9f4;
+            -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+            box-shadow: 0 0 5px #03e9f4;
+            box-shadow: 0 0 15px #03e9f4;
+            box-shadow: 0 0 25px #03e9f4;
+            box-shadow: 0 0 100px #03e9f4;
+        }
+    }
+    .gameover-btns{
+        margin-top: 10px;
+        button{
+        border-top: 2px solid #03e9f4;
+        border-radius: 10px;
+        margin: 0 5px;
+        font-size: 16px;
+        padding: 3px 5px;
+        width: 80px;
+            -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+            box-shadow: 0 0 5px #03e9f4;
+            box-shadow: 0 0 15px #03e9f4;
+            box-shadow: 0 0 25px #03e9f4;
+            box-shadow: 0 0 100px #03e9f4;
+        }
+    }
+    .save-btn{
+        background-color: yellow;
+    }
+    .restart-btn{
+        background-color: rgb(21, 255, 0);
+        color: rgb(0, 0, 185);
+    }
+    .exit-btn{
+        background-color: rgb(255, 0, 0);
+        color: white;
+    }
+}
+.save-display{
+    padding: 5px;
+    padding-bottom: 100px;
+}
+.save-div{
+    .save-item{
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        height: 25px;
+        border-bottom: 1px dotted blueviolet;
+        div{
+            width: 25%;
+        }
+    }
+    .save-item:nth-last-child(-n +2){
+        display: none;
+    }
+}
+.save-total{
+    height: 25px;
+    line-height: 25px;
+    display: flex;
+    justify-content: space-between;
+    margin-top:25px;
+    border-top: 1px dotted blueviolet;
+    border-bottom: double;
+    div{
+        width: 25%;
+    }
+}
+.gametittal-div{
+    .game-time{
+        display: grid;
+        justify-content: center;
+        text-align: center;
+        font-size: 12px;
+        .gamenums{
+            font-size: 20px;
+            border-radius:20px 0;
+            text-decoration: underline;
+            margin-bottom: 2px;
+        }
+    }
+    .savename-div{
+        height: 30px;
+        line-height: 30px;
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        div{
+            width: 25%;
+        }
+    }
+    
+}
+.winlose-div{
+    display: grid;
+    justify-content: center;
+    margin:5px 0;
+    padding-bottom: 20px;
+    border-bottom: 2px solid red;
+    div{
+        text-align: center;
+    }
+    .save-win{
+        font-size: larger;
+        padding: 10px;
+    }
+    .thank{
+        margin-top: 5px;
+    }
+}
+.about{
+   display:flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+}
+.comments{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    div{
+        display: flex;
+        align-items:end;
+        height: 25px;
+        border-top: 1px dotted blueviolet;
+    }
+    .p3comments{
+        border-bottom: 1px dotted blueviolet;
+    }
+}
+.inactive{
+    display: none;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="game-name">Game:Name</div>
+        <div class="header">
+            <div class="bkp-name">BreakPoints</div>
+            <div class="start-time"></div>
+            <div class="stv-name">1* = xxxx</div>
+        </div>
+        <div class="nav-ctn">
+            <div class="no-div">No.</div>
+            <div class="names-div">
+                <p class="p1name">Player1</p>
+                <p class="p2name">Player2</p>
+                <p class="p3name">Player3</p>
+            </div>
+
+            <div class="setting-div" onclick="Setting()">
+                    <button class="setting-btn">Setting</button>
+            </div>
+        </div>
+        <div class="lists-ctn inactive">
+            <ul>
+                <li class="newgame-li" onclick="newGame()">NewGame</li>
+                <li class="seeall-li" onclick="seeAll()" >See all</li>
+                <li class="reset-li" onclick="Reset()">Reset</li>
+                <li class="about-li" onclick="About()">About</li>
+            </ul>
+        </div>
+        <div class="create-ctn inactive">
+            <input type="text" class="p1name-input" placeholder=" Player-1 name" name="p1">
+            <input type="text" class="p1comments-input" placeholder="player1 comments" name="p1comments">
+            <input type="text" class="p2name-input" placeholder=" Player-2 name" name="p2">
+            <input type="text" class="p2comments-input" placeholder="player2 comments" name="p2comments">
+            <input type="text" class="p3name-input" placeholder=" Player-3 name" name="p3">
+            <input type="text" class="p3comments-input" placeholder="player3 comments" name="p3comments">
+            <input type="text" class="gamename-input" placeholder=" Game name" name="gamename">
+            <input type="text" class="bkp-input" value="1500."  name="Bkp" readonly>
+            <input type="number" class="stv-input" placeholder=" 1* = xxx/ks" name="stv">
+            <input type="button" name="create" id="create-btn" value="Create" onclick="Create()">
+        </div>
+        
+        <div class="enter-display">
+        </div>
+        <div class="total-display">
+            <div class="total-text">Total</div>
+            <div class="p1total-text"></div>
+            <div class="p2total-text"></div>
+            <div class="p3total-text"></div>
+            <div class="empty"></div>
+        </div>
+        <div class="comments">
+            <div class="p1comments"></div>
+            <div class="p2comments"></div>
+            <div class="p3comments"></div>
+        </div>
+        <div class="gameover-ctn inactive">
+            <div class="gameover"><button>GameOver</button></div>
+            <div class="bkp-div"></div>
+            <div class="stv-div"></div>
+            <div class="winner"></div>
+            <div class="second"></div>
+            <div class="third"></div>
+            <div class="gameover-btns">
+                <button class="save-btn" onclick="Save()">Save</button>
+                <button class="restart-btn" onclick="reStart()">Restart</button>
+                <button class="exit-btn" onclick="Exit()">Exit</button>
+            </div>
+        </div>
+    </div>
+     <div class="save-display inactive">
+     </div>
+     <div class="about inactive">
+         <h1>hollYboad</h1>
+         <label for="h1">Version: 1.1</label>
+         <p>Contact: padecholl@gmail.com</p>
+         <p for="footer">Copyright &copy; 2024 Developed by Padecholl.</p>
+     </div>
+    <form name="forms">
+        <div class="append-ctn">
+            <div class="inputs-ctn">
+                <input type="text" name="screen1" id="answer1" class="player1" readonly placeholder=""> <br>
+                <input type="text" name="screen2" id="answer2" class="player2" readonly placeholder=""> <br>
+                <input type="text" name="screen3" id="answer3" class="player3" readonly placeholder=""> <br>
+                <input type="button" class="enter-btn" onclick="Enter()" value="Enter">
+                <input type="button" class="update-btn inactive" id="update-btn " value="Update">
+            </div>
+            <div class="p1num-ctn inactive">
+                <input type="button" value="1" onclick="forms.screen1.value+='1'">
+                <input type="button" value="2" onclick="forms.screen1.value+='2'">
+                <input type="button" value="3" onclick="forms.screen1.value+='3'">
+                <input type="button" value="<" class="remove-input1">
+                <input type="button" value="4" onclick="forms.screen1.value+='4'">
+                <input type="button" value="5" onclick="forms.screen1.value+='5'">
+                <input type="button" value="6" onclick="forms.screen1.value+='6'">
+                <input type="button" value="-" onclick="forms.screen1.value+='-'">
+                <input type="button" value="7" onclick="forms.screen1.value+='7'">
+                <input type="button" value="8" onclick="forms.screen1.value+='8'">
+                <input type="button" value="9" onclick="forms.screen1.value+='9'">
+                <input type="button" value="2 Jokers *" onclick="forms.screen1.value+='*'">
+                <input type="button" value="*" onclick="forms.screen1.value+='.*'">
+                <input type="button" value="0" onclick="forms.screen1.value+='0'">
+                <input type="button" value="v" onclick="hideBtns()">
+                <input type="button" value="C/E" class="clear-input1">
+            </div>
+            <div class="p2num-ctn inactive">
+                <input type="button" value="1" onclick="forms.screen2.value+='1'">
+                <input type="button" value="2" onclick="forms.screen2.value+='2'">
+                <input type="button" value="3" onclick="forms.screen2.value+='3'">
+                <input type="button" value="<" class="remove-input2">
+                <input type="button" value="4" onclick="forms.screen2.value+='4'">
+                <input type="button" value="5" onclick="forms.screen2.value+='5'">
+                <input type="button" value="6" onclick="forms.screen2.value+='6'">
+                <input type="button" value="-" onclick="forms.screen2.value+='-'">
+                <input type="button" value="7" onclick="forms.screen2.value+='7'">
+                <input type="button" value="8" onclick="forms.screen2.value+='8'">
+                <input type="button" value="9" onclick="forms.screen2.value+='9'">
+                <input type="button" value="2 Jokers *" onclick="forms.screen2.value+='*'">
+                <input type="button" value="*" onclick="forms.screen2.value+='.*'">
+                <input type="button" value="0" onclick="forms.screen2.value+='0'">
+                <input type="button" value="v" onclick="hideBtns()">
+                <input type="button" value="C/E" class="clear-input2">
+            </div>
+            <div class="p3num-ctn inactive">
+                <input type="button" value="1" onclick="forms.screen3.value+='1'">
+                <input type="button" value="2" onclick="forms.screen3.value+='2'">
+                <input type="button" value="3" onclick="forms.screen3.value+='3'">
+                <input type="button" value="<" class="remove-input3">
+                <input type="button" value="4" onclick="forms.screen3.value+='4'">
+                <input type="button" value="5" onclick="forms.screen3.value+='5'">
+                <input type="button" value="6" onclick="forms.screen3.value+='6'">
+                <input type="button" value="-" onclick="forms.screen3.value+='-'">
+                <input type="button" value="7" onclick="forms.screen3.value+='7'">
+                <input type="button" value="8" onclick="forms.screen3.value+='8'">
+                <input type="button" value="9" onclick="forms.screen3.value+='9'">
+                <input type="button" value="2 Jokers *" onclick="forms.screen3.value+='*'">
+                <input type="button" value="*" onclick="forms.screen3.value+='.*'">
+                <input type="button" value="0" onclick="forms.screen3.value+='0'">
+                <input type="button" value="v" onclick="hideBtns()">
+                <input type="button" value="C/E" class="clear-input3">
+
+            </div>
+        </div>
+    </form>
+    <!-- <script src="app.js"></script> -->
+<script>
+
+const create = JSON.parse(localStorage.getItem('create'))||[]
+const enter = JSON.parse(localStorage.getItem('enter'))||[]
+const entertotal = JSON.parse(localStorage.getItem('entertotal'))||[]
+const winorlose = JSON.parse(localStorage.getItem('winorlose'))||[]
+const save = JSON.parse(localStorage.getItem('save'))||[]
+
+const Setting=()=>{
+    let btn = document.querySelector('.setting-btn')
+            if(btn.innerText === "Setting"){
+                btn.innerText = "Back"
+            document.querySelector('.lists-ctn').classList.remove('inactive')
+        }else{
+            btn.innerText = "Setting"
+            document.querySelector('.lists-ctn').classList.add('inactive')
+            document.querySelector('.create-ctn').classList.add('inactive')
+            }
+};
+const newGame=()=>{
+    document.querySelector('.lists-ctn').classList.add('inactive')
+        if(confirm('Game အသစ် စမှာလား?')){
+            document.querySelector('.create-ctn').classList.remove('inactive')
+            localStorage.removeItem('create')
+            localStorage.removeItem('enter')
+        }
+
+};
+const seeAll=()=>{
+    if(save == ''){
+        alert('There are no save game!')
+        window.location.reload()
+    }
+    document.querySelector('.save-display').classList.remove('inactive')
+    document.querySelector('.container').classList.add('inactive')
+};
+const Reset=()=>{
+    if(confirm('ပွဲစဉ်အားလုံးစာရင်း ဖျက်မှာလား?')){
+        localStorage.removeItem('finalWin')
+        localStorage.removeItem('winorlose')
+        localStorage.removeItem('entertotal')
+        localStorage.removeItem('create')
+        localStorage.removeItem('enter')
+        localStorage.removeItem('save')
+    }
+    window.location.reload()
+}
+const About=()=>{
+    document.querySelector('.container').classList.add('inactive')
+    document.querySelector('form').classList.add('inactive')
+    document.querySelector('.about').classList.remove('inactive')
+}
+document.querySelector('.save-display').addEventListener('click',()=>{
+    window.location.reload()
+})
+document.querySelector('.about').addEventListener('click',()=>{
+    window.location.reload()
+})
+const createDisplay=()=>{
+      create.forEach(item=>{
+        document.querySelector('.start-time').textContent = item.Date
+        document.querySelector('.p1name').textContent = item.p1name
+        document.querySelector('.p2name').textContent = item.p2name
+        document.querySelector('.p3name').textContent = item.p3name
+        document.querySelector('.player1').placeholder = item.p1name
+        document.querySelector('.player2').placeholder = item.p2name
+        document.querySelector('.player3').placeholder = item.p3name
+        document.querySelector('.game-name').textContent = item.gamename
+    document.querySelector('.bkp-name').textContent = `Brake = ${item.BKPs}`
+    document.querySelector('.stv-name').textContent = `1* = ${item.STV}`
+    if(item.p1comments == ''){
+        document.querySelector('.p1comments').textContent = ''
+    }else{
+        document.querySelector('.p1comments').textContent = `${item.p1name}   said, " ${item.p1comments} "`
+    };
+    if(item.p2comments == ''){
+        document.querySelector('.p2comments').textContent = ''
+    }else{
+        document.querySelector('.p2comments').textContent = `${item.p2name}   said, " ${item.p2comments} "`
+    };
+    if(item.p3comments == ''){
+        document.querySelector('.p3comments').textContent = ''
+    }else{
+        document.querySelector('.p3comments').textContent = `${item.p3name}    said, " ${item.p3comments} "`
+    };
+      })
+};
+createDisplay()
+const Create=()=>{
+    let btn = document.querySelector('.setting-btn')
+    btn.innerText = "Setting"
+    document.querySelector('.create-ctn').classList.add('inactive')
+    let Now = new Date()
+    let date = Now.toLocaleString()
+    let gamename = document.querySelector('.gamename-input').value;
+    let p1name = document.querySelector('.p1name-input').value;
+    let p1comments = document.querySelector('.p1comments-input').value;
+    let p2name = document.querySelector('.p2name-input').value;
+    let p2comments = document.querySelector('.p2comments-input').value;
+    let p3name = document.querySelector('.p3name-input').value;
+    let p3comments = document.querySelector('.p3comments-input').value;
+    let BKPs = document.querySelector('.bkp-input').value;
+    let STV = document.querySelector('.stv-input').value;
+
+    if(p1name == "" || p2name == "" || p3name ==""){
+        alert('Please enter players name!')
+    }
+    if(STV == ''){
+        alert('Please enter your bet!')
+    }
+    if(create.length>0){
+                create.splice(create.length-1)
+                localStorage.setItem('create',JSON.stringify(create))
+            }
+    create.push({Date:date,p1name:p1name,p2name:p2name,p3name:p3name,gamename:gamename,BKPs:BKPs,STV:STV,
+                p1name:p1name,p2name:p2name,p3name:p3name,
+               p1comments:p1comments,p2comments:p2comments,p3comments:p3comments})
+    localStorage.setItem('create',JSON.stringify(create))
+
+    window.location.reload()
+};
+
+let createInputs = document.querySelectorAll('.create-ctn input')
+createInputs.forEach((btn)=>{
+    btn.addEventListener('click',()=>{
+        createInputs.forEach((input)=>{
+            input.style.backgroundColor = 'rgb(200,200,200)'
+        })
+        btn.style.backgroundColor = 'white'
+    })
+});
+const chooseInput=()=>{
+    document.querySelector('.player1').addEventListener('click',()=>{
+        document.querySelector('.player1').style.backgroundColor = 'white'
+        document.querySelector('.player2').style.backgroundColor = 'inherit'
+        document.querySelector('.player3').style.backgroundColor = 'inherit'
+        document.querySelector('.p1num-ctn').classList.remove('inactive')
+        document.querySelector('.p2num-ctn').classList.add('inactive')
+        document.querySelector('.p3num-ctn').classList.add('inactive')
+    })
+    document.querySelector('.player2').addEventListener('click',()=>{
+        document.querySelector('.player2').style.backgroundColor = 'white'
+        document.querySelector('.player1').style.backgroundColor = 'inherit'
+        document.querySelector('.player3').style.backgroundColor = 'inherit'
+        document.querySelector('.p2num-ctn').classList.remove('inactive')
+        document.querySelector('.p1num-ctn').classList.add('inactive')
+        document.querySelector('.p3num-ctn').classList.add('inactive')
+    })
+    document.querySelector('.player3').addEventListener('click',()=>{
+        document.querySelector('.player3').style.backgroundColor = 'white'
+        document.querySelector('.player1').style.backgroundColor = 'inherit'
+        document.querySelector('.player2').style.backgroundColor = 'inherit'
+        document.querySelector('.p3num-ctn').classList.remove('inactive')
+        document.querySelector('.p2num-ctn').classList.add('inactive')
+        document.querySelector('.p1num-ctn').classList.add('inactive')
+    })
+};
+chooseInput()
+const hideBtns=()=>{
+    document.querySelector('.p1num-ctn').classList.add('inactive')
+    document.querySelector('.p2num-ctn').classList.add('inactive')
+    document.querySelector('.p3num-ctn').classList.add('inactive')
+};
+const backspace=()=>{
+    document.querySelector('.remove-input1').addEventListener('click',()=>{
+         let input = document.querySelector('.player1')
+         input.value = input.value.slice(0,-1)
+        })
+       document.querySelector('.remove-input2').addEventListener('click',()=>{
+        let input = document.querySelector('.player2')
+        input.value = input.value.slice(0,-1)
+        })
+       document.querySelector('.remove-input3').addEventListener('click',()=>{
+        let input = document.querySelector('.player3')
+        input.value = input.value.slice(0,-1)
+        });
+};
+backspace()
+const clearInput=()=>{
+    document.querySelector('.clear-input1').addEventListener('click',()=>{
+         let input = document.querySelector('.player1')
+         input.value = ""
+        })
+       document.querySelector('.clear-input2').addEventListener('click',()=>{
+        let input = document.querySelector('.player2')
+        input.value = ""
+        })
+       document.querySelector('.clear-input3').addEventListener('click',()=>{
+        let input = document.querySelector('.player3')
+        input.value = ""
+        });
+};
+clearInput()
+const enterDisplay = ()=>{
+    let html = ''
+    enter.forEach((item,index)=>{
+        html +="<div class='item-div'>"
+        html +="<div class='no'>"+ (index+1)+"." +"</div>" 
+        html +="<div class='p1'id='p1-div'>"+item.P1P + "</div>" 
+        html +="<div class='p2'>"+item.P2P+"</div>"
+        html +="<div class='p3'>"+item.P3P+"</div>"
+        html +='<div class="edit-div"><button onclick="Edit('+index+')" class="edit-btn">Edit</button></div>'
+        html +="</div>"
+    });
+    document.querySelector('.enter-display').innerHTML = html
+};
+enterDisplay()
+const Enter=()=>{
+    if(create == ''){
+        alert('ပွဲစဉ်အသစ် စာရင်းသွင်းပါ')
+        return
+    }
+    hideBtns()
+    let p1point = document.querySelector('.player1').value
+    let p2point = document.querySelector('.player2').value
+    let p3point = document.querySelector('.player3').value
+    if(p1point == '' || p2point == '' || p3point == ''){
+        alert('Enter players points')
+        return false
+    }
+            
+    enter.push({P1P:p1point,P2P:p2point,P3P:p3point})
+    localStorage.setItem('enter',JSON.stringify(enter))
+
+    let bkpoints = create[0].BKPs
+    let starvalue = create[0].STV
+    window.location.reload()
+    
+};
+
+const Edit=(index)=>{
+    document.querySelector('.enter-btn').classList.add('inactive')
+    document.querySelector('.update-btn').classList.remove('inactive')
+    document.querySelector('.p1num-ctn').classList.remove('inactive')
+    let Itemdiv = document.querySelectorAll('.item-div')
+    Itemdiv.forEach((item)=>{
+        item.style.backgroundColor = 'white'
+        item.style.color = 'blue'
+    })
+    Itemdiv[index].style.backgroundColor = 'lightgray'
+    Itemdiv[index].style.color = 'red'
+    document.querySelector('.player1').value = enter[index].P1P
+    document.querySelector('.player2').value = enter[index].P2P
+    document.querySelector('.player3').value = enter[index].P3P
+    
+        document.querySelector('.update-btn').addEventListener('click',()=>{
+            if(document.querySelector('.player1').value ==''||
+               document.querySelector('.player2').value=='' ||
+                document.querySelector('.player3').value==''){
+                alert('Enter player points')
+                return
+            }
+        document.querySelector('.enter-btn').classList.remove('inactive')
+        document.querySelector('.update-btn').classList.add('inactive')
+        enter[index].P1P = document.querySelector('.player1').value;
+        enter[index].P2P = document.querySelector('.player2').value;
+        enter[index].P3P = document.querySelector('.player3').value;
+
+    localStorage.setItem('enter',JSON.stringify(enter))
+
+    document.querySelector('.player1').value =''
+    document.querySelector('.player2').value=''
+    document.querySelector('.player3').value=''
+    window.location.reload()
+    });
+};
+const saveDisplay =()=>{
+    for(let i=0; i< save.length; i++){
+        let saveDiv = document.createElement('div')
+        saveDiv.setAttribute('class', 'save-div')
+        saveDiv.setAttribute('id','save_div-'+i)
+        let GameTittalDiv = document.createElement('div')
+        GameTittalDiv.setAttribute('class','gametittal-div')
+        let gameTime = document.createElement('div')
+        gameTime.setAttribute('class','game-time')
+        gameTime.innerHTML =`<div class='gamenums'>${save[i][1].gamename}</div> <div>Finisth time:- ${save[i][0].date}</div>` 
+        let namesDiv = document.createElement('div')
+        namesDiv.setAttribute('class','savename-div')
+        namesDiv.innerHTML = `<div>No.${i+1}</div><div>${save[i][1].p1name}</div><div>${save[i][1].p2name}</div><div>${save[i][1].p3name}</div>`
+        GameTittalDiv.append(gameTime,namesDiv)
+        let saveTotal = document.createElement('div')
+        saveTotal.setAttribute('class','save-total')
+        saveTotal.innerHTML = `<div>Total</div>
+        <div>${save[i][save[i].length-2].p1Tp}(${save[i][save[i].length-2].p1Ts}*)</div>
+        <div>${save[i][save[i].length-2].p2Tp}(${save[i][save[i].length-2].p2Ts}*)</div>
+        <div>${save[i][save[i].length-2].p3Tp}(${save[i][save[i].length-2].p3Ts}*)</div>`
+        let winLose =document.createElement('div')
+        winLose.setAttribute('class','winlose-div')
+        winLose.innerHTML =`
+        <div class='save-win'>${save[i][save[i].length-1].winName} = ${save[i][save[i].length-1].winPrize}</div>
+        <div>${save[i][save[i].length-1].secName} = ${save[i][save[i].length-1].secPrize}</div>
+        <div>${save[i][save[i].length-1].trdName} = ${save[i][save[i].length-1].trdPrize}</div>
+        <div class='thank'>Thank you for using hollYboad app.</div>
+        <div>==X==X==X==X==X==</div>`
+        document.querySelector('.save-display').append( GameTittalDiv,saveDiv,saveTotal,winLose)
+        let saveDivs = document.querySelectorAll('#save_div-'+i)
+        let html = ''
+        saveDivs.forEach((div)=>{
+            for(let j=2; j< save[i].length; j++){
+                html +="<div class='save-item'>"
+                html +="<div>"+(j-1)+'.'+"</div>"
+                html +="<div>"+save[i][j].P1P+"</div>"
+                html +="<div>"+save[i][j].P2P+"</div>"
+                html +="<div>"+save[i][j].P3P+"</div>"
+                html +="</div>"
+            }
+            div.innerHTML = html
+        });
+    }
+};
+saveDisplay()
+const Save=()=>{
+    document.querySelector('.gameover-ctn').classList.add('inactive')
+    let Now = new Date()
+    let date = Now.toLocaleString()
+
+    entertotal.push({p1Tp:p1Tp,p1Ts:p1Ts, p2Tp:p2Tp,p2Ts:p2Ts,p3Tp:p3Tp,p3Ts:p3Ts,})
+    localStorage.setItem('entertotal',JSON.stringify(entertotal))
+    let   finalwin = winorlose.pop()
+    save.push(
+        [{date:date},...create,...enter,...entertotal,finalwin]
+    );
+    localStorage.setItem('save',JSON.stringify(save));
+    localStorage.removeItem('finalWin')
+    localStorage.removeItem('winorlose')
+    localStorage.removeItem('entertotal')
+    localStorage.removeItem('enter')
+    window.location.reload()
+}
+  let p1Ts = 0
+  let p2Ts = 0
+  let p3Ts = 0
+  let p1Tp =  enter.reduce((acc,cur)=>{
+      return acc + parseInt(cur.P1P)
+    },0);
+  let p2Tp =  enter.reduce((acc,cur)=>{
+        return acc + parseInt(cur.P2P)
+    },0);
+  let p3Tp =  enter.reduce((acc,cur)=>{
+        return acc + parseInt(cur.P3P)
+    },0);
+
+    enter.forEach((obj)=>{
+        p1Ts +=(obj.P1P.match(/\*/g) || [] ).length;
+        p2Ts +=(obj.P2P.match(/\*/g) || [] ).length;
+        p3Ts +=(obj.P3P.match(/\*/g) || [] ).length;
+    });
+document.querySelector('.p1total-text').innerText = `${p1Tp}(${p1Ts}*)`
+document.querySelector('.p2total-text').innerText = `${p2Tp}(${p2Ts}*)`
+document.querySelector('.p3total-text').innerText = `${p3Tp}(${p3Ts}*)`
+
+const bkpoints = 1500
+const checkPointsWinner=()=>{
+    let starvalue = create[0].STV
+    if(p1Tp > bkpoints && (p1Tp > p2Tp && p1Tp > p3Tp)){
+       p1win = parseInt((bkpoints/100) + 5 + p1Ts)
+       p2win = parseInt(Math.round(p2Tp/100) + p2Ts)
+       p3win = parseInt(Math.round(p3Tp/100) + p3Ts)
+       p1Win_Total = ((p1win-p2win) + (p1win-p3win)) * starvalue
+       p2Win_Total = ((p2win-p1win) + (p2win-p3win)) * starvalue
+       p3Win_Total = ((p3win-p1win) + (p3win-p2win)) * starvalue
+
+          let winner = create[0].p1name
+          let second = create[0].p2name
+          let third = create[0].p3name
+
+          document.querySelector('.winner').textContent = `${winner} = ${p1Win_Total}/ks.`
+          document.querySelector('.second').textContent = `${second} = ${p2Win_Total}/ks.`
+          document.querySelector('.third').textContent = `${third} = ${p3Win_Total}/ks.`
+
+          winorlose.push({winName:winner,winPrize:p1Win_Total,
+                        secName:second,secPrize:p2Win_Total,
+                        trdName:third,trdPrize:p3Win_Total})
+          localStorage.setItem('winorlose',JSON.stringify(winorlose))  
+
+   };
+   if(p2Tp > bkpoints && p2Tp > p1Tp && p2Tp > p3Tp){
+        p2win = parseInt((bkpoints/100) + 5 + p2Ts)
+        p1win = parseInt(Math.round(p1Tp/100) + p1Ts)
+        p3win = parseInt(Math.round(p3Tp/100) + p3Ts)
+        p1Win_Total = ((p1win-p2win) + (p1win-p3win)) * starvalue
+        p2Win_Total = ((p2win-p1win) + (p2win-p3win)) * starvalue
+        p3Win_Total = ((p3win-p1win) + (p3win-p2win)) * starvalue
+
+          let winner = create[0].p2name
+          let second = create[0].p1name
+          let third = create[0].p3name
+
+        document.querySelector('.winner').textContent = `${winner} = ${p2Win_Total}/ks.`
+          document.querySelector('.second').textContent = `${second} = ${p1Win_Total}/ks.`
+          document.querySelector('.third').textContent = `${third} = ${p3Win_Total}/ks.`
+          winorlose.push({winName:winner,winPrize:p2Win_Total,
+                         secName:second,secPrize:p1Win_Total,
+                         trdName:third,trdPrize:p3Win_Total})
+          localStorage.setItem('winorlose',JSON.stringify(winorlose))  
+          console.log(p1win,p2win,p3win)
+    };
+    if(p3Tp > bkpoints && p3Tp > p1Tp && p3Tp > p2Tp){
+            let winner = create[0].p3name
+            let second = create[0].p1name
+            let third = create[0].p2name
+
+         p3win = parseInt((bkpoints/100) + 5 + p3Ts)
+         p1win = parseInt(Math.round(p1Tp/100) + p1Ts)
+         p2win = parseInt(Math.round(p2Tp/100) + p2Ts)
+         p1Win_Total = ((p1win-p2win) + (p1win-p3win)) * starvalue
+         p2Win_Total = ((p2win-p1win) + (p2win-p3win)) * starvalue
+         p3Win_Total = ((p3win-p1win) + (p3win-p2win)) * starvalue
+
+          document.querySelector('.winner').textContent = `${winner} = ${p3Win_Total}/ks.`
+          document.querySelector('.second').textContent = `${second} = ${p1Win_Total}/ks.`
+          document.querySelector('.third').textContent = `${third} = ${p2Win_Total}/ks.`
+          winorlose.push({winName:winner,winPrize:p3Win_Total,
+                         secName:second,secPrize:p1Win_Total,
+                         trdName:third,trdPrize:p2Win_Total,})
+          localStorage.setItem('winorlose',JSON.stringify(winorlose))  
+          console.log(p1win,p2win,p3win)
+
+     }
+
+};
+
+const checkLastWinner=()=>{
+    let starvalue = create[0].STV
+    if(p1Tp>bkpoints || p2Tp>bkpoints || p3Tp>bkpoints){
+        let obj = enter[enter.length -1]
+        if(p1Tp > bkpoints && obj.P1P.includes('.*')){
+           p1win = parseInt((bkpoints/100) + 5 + p1Ts)
+           p2win = parseInt(Math.round(p2Tp/100) + p2Ts)
+           p3win = parseInt(Math.round(p3Tp/100) + p3Ts)
+           p1Win_Total = ((p1win-p2win) + (p1win-p3win)) * starvalue
+           p2Win_Total = ((p2win-p1win) + (p2win-p3win)) * starvalue
+           p3Win_Total = ((p3win-p1win) + (p3win-p2win)) * starvalue
+    
+              let winner = create[0].p1name
+              let second = create[0].p2name
+              let third = create[0].p3name
+    
+              document.querySelector('.winner').textContent = `${winner} = ${p1Win_Total}/ks.`
+              document.querySelector('.second').textContent = `${second} = ${p2Win_Total}/ks.`
+              document.querySelector('.third').textContent = `${third} = ${p3Win_Total}/ks.`
+              winorlose.push({winName:winner,winPrize:p1Win_Total,
+                            secName:second,secPrize:p2Win_Total,
+                            trdName:third,trdPrize:p3Win_Total})
+          localStorage.setItem('winorlose',JSON.stringify(winorlose))  
+
+              console.log(p1win,p2win,p3win,obj.P1P.includes('.*'))
+            }
+            if(p2Tp > bkpoints && obj.P2P.includes('.*')){
+            p2win = parseInt((bkpoints/100) + 5 + p2Ts)
+            p1win = parseInt(Math.round(p1Tp/100) + p1Ts)
+            p3win = parseInt(Math.round(p3Tp/100) + p3Ts)
+            p1Win_Total = ((p1win-p2win) + (p1win-p3win)) * starvalue
+            p2Win_Total = ((p2win-p1win) + (p2win-p3win)) * starvalue
+            p3Win_Total = ((p3win-p1win) + (p3win-p2win)) * starvalue
+    
+              let winner = create[0].p2name
+              let second = create[0].p1name
+              let third = create[0].p3name
+    
+            document.querySelector('.winner').textContent = `${winner} = ${p2Win_Total}/ks.`
+              document.querySelector('.second').textContent = `${second} = ${p1Win_Total}/ks.`
+              document.querySelector('.third').textContent = `${third} = ${p3Win_Total}/ks.`
+              winorlose.push({winName:winner,winPrize:p2Win_Total,
+                secName:second,secPrize:p1Win_Total,
+                trdName:third, trdPrize:p3Win_Total})
+          localStorage.setItem('winorlose',JSON.stringify(winorlose))  
+
+              console.log(p1win,p2win,p3win,obj.P2P.includes('.*'))
+            }
+            if(p3Tp > bkpoints && obj.P3P.includes('.*')){
+                let winner = create[0].p3name
+                let second = create[0].p1name
+                let third = create[0].p2name
+    
+             p3win = parseInt((bkpoints/100) + 5 + p3Ts)
+             p1win = parseInt(Math.round(p1Tp/100) + p1Ts)
+             p2win = parseInt(Math.round(p2Tp/100) + p2Ts)
+             p1Win_Total = ((p1win-p2win) + (p1win-p3win)) * starvalue
+             p2Win_Total = ((p2win-p1win) + (p2win-p3win)) * starvalue
+             p3Win_Total = ((p3win-p1win) + (p3win-p2win)) * starvalue
+    
+              document.querySelector('.winner').textContent = `${winner} = ${p3Win_Total}/ks.`
+              document.querySelector('.second').textContent = `${second} = ${p1Win_Total}/ks.`
+              document.querySelector('.third').textContent = `${third} = ${p2Win_Total}/ks.`
+              winorlose.push({winName:winner,winPrize:p3Win_Total,
+                secName:second,secPrize:p1Win_Total,
+                trdName:third,trdPrize:p2Win_Total
+                ,})
+             localStorage.setItem('winorlose',JSON.stringify(winorlose))  
+
+              console.log(p1win,p2win,p3win,obj.P3P.includes('.*'))
+            }
+    }else{
+      checkPointsWinner()
+    }
+    };
+
+const checkEqulPoints=()=>{
+    let starvalue = create[0].STV
+       if((p1Tp > bkpoints || p2Tp > bkpoints || p3Tp > bkpoints) && 
+        (p1Tp == p2Tp || p1Tp == p3Tp || p2Tp == p3Tp )){
+        let   p1wins = parseInt(Math.round(p1Tp/100) + p1Ts)
+        let   p2wins = parseInt(Math.round(p2Tp/100) + p2Ts)
+        let   p3wins = parseInt(Math.round(p3Tp/100) + p3Ts)
+         
+         if(p1wins > p2wins || p1wins > p3wins){
+            let winner = create[0].p1name
+            let second = create[0].p2name
+            let third = create[0].p3name
+     let    p1win = parseInt(Math.round(bkpoints/100)+ 5 + p1Ts)
+     let    p3win = parseInt(Math.round(p3Tp/100) + p3Ts)
+     let    p2win = parseInt(Math.round(p2Tp/100) + p2Ts)
+
+     let    p1Win_Total = ((p1win-p2win) + (p1win-p3win)) * starvalue
+     let    p2Win_Total = ((p2win-p1win) + (p2win-p3win)) * starvalue
+     let    p3Win_Total = ((p3win-p1win) + (p3win-p2win)) * starvalue
+            document.querySelector('.winner').textContent = `${winner} = ${p1Win_Total}/ks.`
+            document.querySelector('.second').textContent = `${second} = ${p2Win_Total}/ks.`
+            document.querySelector('.third').textContent = `${third} = ${p3Win_Total}/ks.`
+            winorlose.push({winName:winner,winPrize:p1Win_Total,
+                secName:second,secPrize:p2Win_Total,
+                trdName:third,trdPrize:p3Win_Total
+                })
+          localStorage.setItem('winorlose',JSON.stringify(winorlose))  
+         }
+         if(p2wins > p1wins || p2wins > p3wins){
+            let winner = create[0].p2name
+            let second = create[0].p1name
+            let third = create[0].p3name
+
+     let    p3win = parseInt(Math.round(p3Tp/100) + p3Ts)
+     let    p2win = parseInt(Math.round(bkpoints/100)+ 5 + p2Ts)
+     let    p1win = parseInt(Math.round(p1Tp/100) + p1Ts)
+
+         p1Win_Total = ((p1win-p2win) + (p1win-p3win)) * starvalue
+         p2Win_Total = ((p2win-p1win) + (p2win-p3win)) * starvalue
+         p3Win_Total = ((p3win-p1win) + (p3win-p2win)) * starvalue
+            document.querySelector('.winner').textContent = `${winner} = ${p2Win_Total}/ks.`
+            document.querySelector('.second').textContent = `${second} = ${p1Win_Total}/ks.`
+            document.querySelector('.third').textContent = `${third} = ${p3Win_Total}/ks.`
+            winorlose.push({winName:winner,winPrize:p2Win_Total,
+                secName:second,secPrize:p1Win_Total,
+                trdName:third,trdPrize:p3Win_Total
+                })
+          localStorage.setItem('winorlose',JSON.stringify(winorlose))  
+         }
+         if(p3wins > p1wins || p3wins > p2wins){
+            let winner = create[0].p3name
+            let second = create[0].p1name
+            let third = create[0].p2name
+
+      let   p2win = parseInt(Math.round(p2Tp/100) + p2Ts)
+      let   p3win = parseInt(Math.round(bkpoints/100)+ 5 + p3Ts)
+      let   p1win = parseInt(Math.round(p1Tp/100) + p1Ts)
+
+         p1Win_Total = ((p1win-p2win) + (p1win-p3win)) * starvalue
+         p2Win_Total = ((p2win-p1win) + (p2win-p3win)) * starvalue
+         p3Win_Total = ((p3win-p1win) + (p3win-p2win)) * starvalue
+            document.querySelector('.winner').textContent = `${winner} = ${p3Win_Total}/ks.`
+            document.querySelector('.second').textContent = `${second} = ${p1Win_Total}/ks.`
+            document.querySelector('.third').textContent = `${third} = ${p2Win_Total}/ks.`
+            winorlose.push({winName:winner, winPrize:p3Win_Total,
+                secName:second, secPrize:p1Win_Total,
+                trdName:third, trdPrize:p2Win_Total
+                })
+          localStorage.setItem('winorlose',JSON.stringify(winorlose))  
+         };
+         
+    }
+    
+};
+
+    let starvalue = create[0].STV
+    document.querySelector('.bkp-div').textContent = `Brake points = ${bkpoints}.`
+    document.querySelector('.stv-div').textContent = `1* = ${starvalue}/ks.`
+        checkEqulPoints()
+        checkPointsWinner()
+        checkLastWinner()
+if(p1Tp>bkpoints || p2Tp>bkpoints || p3Tp>bkpoints){
+    document.querySelector('.gameover-ctn').classList.remove('inactive')
+}
+const reStart =()=>{
+    if(confirm('Do yo want restart the game!')){
+        localStorage.removeItem('finalWin')
+        localStorage.removeItem('winorlose')
+        localStorage.removeItem('entertotal')
+        localStorage.removeItem('enter')
+        window.location.reload()
+    }
+};
+const Exit=()=>{
+    console.log('exit')
+   process.exit()
+}
+
+</script>
+ </body>
+</html>

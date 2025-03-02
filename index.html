@@ -379,7 +379,7 @@ input:hover{
             <div class="empty"></div>
         </div>
         <div class="other-com-ctn">Other comments...</div>
-        <div class="gameover-ctn inactive">
+        <div class="gameover-ctn">
             <div class="gameover"><button>GameOver</button></div>
             <div class="bkp-div"></div>
             <div class="stv-div"></div>
@@ -411,10 +411,10 @@ input:hover{
                 <input type="button" class="update-btn inactive" id="update-btn " value="Update">
             </div>
             <div class="inputs-ctn">
-                <input type="text" name="#" id="answer" class="p1-comm" placeholder="comments"> <br>
-                <input type="text" name="#" id="answer" class="p2-comm" placeholder="comments"> <br>
-                <input type="text" name="#" id="answer" class="p3-comm" placeholder="comments"> <br>
-                <input type="text" name="#" id="answer" class="viewer-comm" placeholder="comments"> <br>
+                <input type="text" name="#" id="answer" class="p1-comm forhide" placeholder="comments"> <br>
+                <input type="text" name="#" id="answer" class="p2-comm forhide" placeholder="comments"> <br>
+                <input type="text" name="#" id="answer" class="p3-comm forhide" placeholder="comments"> <br>
+                <input type="text" name="#" id="answer" class="viewer-comm forhide" placeholder="comments"> <br>
             </div>
             <!-- ☆★ ♥️🏆💪🏿✋-->
 
@@ -495,6 +495,14 @@ const entertotal = JSON.parse(localStorage.getItem('entertotal'))||[]
 const winorlose = JSON.parse(localStorage.getItem('winorlose'))||[]
 const save = JSON.parse(localStorage.getItem('save'))||[]
 const viwercomm = JSON.parse(localStorage.getItem('viwercomm'))||[]
+
+const hideKb = document.querySelectorAll('.forhide')
+hideKb.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      let kbs =  document.querySelectorAll('.content')
+      kbs.forEach(kb=>kb.classList.add('inactive'))
+    })
+})
 
 const Setting=()=>{
     let btn = document.querySelector('.setting-btn')
@@ -778,7 +786,7 @@ const saveDisplay =()=>{
         let winLose =document.createElement('div')
         winLose.setAttribute('class','winlose-div')
         winLose.innerHTML =`
-        <div class='save-win'>${save[i][save[i].length-1].winName} = ${save[i][save[i].length-1].winPrize}</div>
+        <div class='save-win'>🏆 ${save[i][save[i].length-1].winName} = ${save[i][save[i].length-1].winPrize} 🏆</div>
         <div>${save[i][save[i].length-1].secName} = ${save[i][save[i].length-1].secPrize}</div>
         <div>${save[i][save[i].length-1].trdName} = ${save[i][save[i].length-1].trdPrize}</div>
         <div class='thank'>Thank you for using hollYboad app.</div>
@@ -856,7 +864,7 @@ const checkPointsWinner=()=>{
           let second = create[0].p2name
           let third = create[0].p3name
 
-          document.querySelector('.winner').textContent = `${winner} = ${p1Win_Total}/ks.`
+          document.querySelector('.winner').textContent = `🏆 ${winner} = ${p1Win_Total}/ks. 🏆`
           document.querySelector('.second').textContent = `${second} = ${p2Win_Total}/ks.`
           document.querySelector('.third').textContent = `${third} = ${p3Win_Total}/ks.`
 
@@ -928,7 +936,7 @@ const checkLastWinner=()=>{
               let second = create[0].p2name
               let third = create[0].p3name
     
-              document.querySelector('.winner').textContent = `${winner} = ${p1Win_Total}/ks.`
+              document.querySelector('.winner').textContent = `🏆 ${winner} = ${p1Win_Total}/ks. 🏆`
               document.querySelector('.second').textContent = `${second} = ${p2Win_Total}/ks.`
               document.querySelector('.third').textContent = `${third} = ${p3Win_Total}/ks.`
               winorlose.push({winName:winner,winPrize:p1Win_Total,
@@ -1007,7 +1015,7 @@ const checkEqulPoints=()=>{
      let    p1Win_Total = ((p1win-p2win) + (p1win-p3win)) * starvalue
      let    p2Win_Total = ((p2win-p1win) + (p2win-p3win)) * starvalue
      let    p3Win_Total = ((p3win-p1win) + (p3win-p2win)) * starvalue
-            document.querySelector('.winner').textContent = `${winner} = ${p1Win_Total}/ks.`
+            document.querySelector('.winner').textContent = `🏆 ${winner} = ${p1Win_Total}/ks. 🏆`
             document.querySelector('.second').textContent = `${second} = ${p2Win_Total}/ks.`
             document.querySelector('.third').textContent = `${third} = ${p3Win_Total}/ks.`
             winorlose.push({winName:winner,winPrize:p1Win_Total,

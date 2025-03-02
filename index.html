@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="style.css"> -->
     <title>HOLLyBOAD</title>
 
@@ -61,11 +62,11 @@ body{
     }
 }
 .item-div{
-    height: 25px;
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: start;
     border-bottom: 1px dotted blueviolet;
+    padding: 2px;
     .no,.edit-div{
         width: 15%;
     }
@@ -77,6 +78,10 @@ body{
         background: none;
         border: none;
         color: blue;
+    }
+    p{
+        font-size: 12px;
+        padding-top: 5px;
     }
 }
 .total-display{
@@ -120,23 +125,22 @@ input{
     }
 .create-ctn{
     background: rgb(200,200,200);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
+    display: flex;
+    flex-direction: column;
     input{
         min-width: 100px;
         box-shadow: inset 3px 3px 2px grey, inset -3px -3px 2px white;
     }
-    .gamename-input{
+    /* .gamename-input{
         grid-column: span 2;
-    }
+    } */
     #create-btn{
         box-shadow: 2px 2px 2px grey, -2px -2px 2px white;
-        grid-column: span 2;
+        /* grid-column: span 2; */
         height: 50px;
     }
 }
-#answer1,#answer2,#answer3{
+#answer,#answer,#answer{
     width:25%;
     height: 30px;
     box-shadow: inset 3px 3px 2px grey, inset -3px -3px 2px white;
@@ -178,6 +182,11 @@ input{
 }
 input:hover{
     box-shadow: inset 3px 3px 2px grey, inset -3px -3px 2px white;
+}
+.other-com-ctn{
+    li{
+      list-style: none;
+    }
 }
 .gameover-ctn{
     margin-top: 10px;
@@ -239,11 +248,14 @@ input:hover{
     .save-item{
         display: flex;
         justify-content: space-between;
-        align-items: end;
-        height: 25px;
+        align-items: start;
         border-bottom: 1px dotted blueviolet;
         div{
             width: 25%;
+        }
+        p{
+            font-size: 12px;
+            padding-top: 5px;
         }
     }
     .save-item:nth-last-child(-n +2){
@@ -313,20 +325,7 @@ input:hover{
    align-items: center;
    height: 100vh;
 }
-.comments{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    div{
-        display: flex;
-        align-items:end;
-        height: 25px;
-        border-top: 1px dotted blueviolet;
-    }
-    .p3comments{
-        border-bottom: 1px dotted blueviolet;
-    }
-}
+
 .inactive{
     display: none;
 }
@@ -338,7 +337,7 @@ input:hover{
         <div class="header">
             <div class="bkp-name">BreakPoints</div>
             <div class="start-time"></div>
-            <div class="stv-name">1* = xxxx</div>
+            <div class="stv-name">1★ = xxxx</div>
         </div>
         <div class="nav-ctn">
             <div class="no-div">No.</div>
@@ -362,14 +361,11 @@ input:hover{
         </div>
         <div class="create-ctn inactive">
             <input type="text" class="p1name-input" placeholder=" Player-1 name" name="p1">
-            <input type="text" class="p1comments-input" placeholder="player1 comments" name="p1comments">
             <input type="text" class="p2name-input" placeholder=" Player-2 name" name="p2">
-            <input type="text" class="p2comments-input" placeholder="player2 comments" name="p2comments">
             <input type="text" class="p3name-input" placeholder=" Player-3 name" name="p3">
-            <input type="text" class="p3comments-input" placeholder="player3 comments" name="p3comments">
             <input type="text" class="gamename-input" placeholder=" Game name" name="gamename">
-            <input type="text" class="bkp-input" value="1500."  name="Bkp" readonly>
-            <input type="number" class="stv-input" placeholder=" 1* = xxx/ks" name="stv">
+            <input type="text" class="bkp-input" value="1500"  name="Bkp" >
+            <input type="number" class="stv-input" placeholder=" 1★ = xxx/ks" name="stv">
             <input type="button" name="create" id="create-btn" value="Create" onclick="Create()">
         </div>
         
@@ -382,11 +378,7 @@ input:hover{
             <div class="p3total-text"></div>
             <div class="empty"></div>
         </div>
-        <div class="comments">
-            <div class="p1comments"></div>
-            <div class="p2comments"></div>
-            <div class="p3comments"></div>
-        </div>
+        <div class="other-com-ctn">Other comments...</div>
         <div class="gameover-ctn inactive">
             <div class="gameover"><button>GameOver</button></div>
             <div class="bkp-div"></div>
@@ -409,16 +401,24 @@ input:hover{
          <p>Contact: padecholl@gmail.com</p>
          <p for="footer">Copyright &copy; 2024 Developed by Padecholl.</p>
      </div>
-    <form name="forms">
+    <form name="forms" id="form" class="keyboard">
         <div class="append-ctn">
             <div class="inputs-ctn">
-                <input type="text" name="screen1" id="answer1" class="player1" readonly placeholder=""> <br>
-                <input type="text" name="screen2" id="answer2" class="player2" readonly placeholder=""> <br>
-                <input type="text" name="screen3" id="answer3" class="player3" readonly placeholder=""> <br>
+                <input type="text" name="screen1" id="answer" class="player1" readonly placeholder=""> <br>
+                <input type="text" name="screen2" id="answer" class="player2" readonly placeholder=""> <br>
+                <input type="text" name="screen3" id="answer" class="player3" readonly placeholder=""> <br>
                 <input type="button" class="enter-btn" onclick="Enter()" value="Enter">
                 <input type="button" class="update-btn inactive" id="update-btn " value="Update">
             </div>
-            <div class="p1num-ctn inactive">
+            <div class="inputs-ctn">
+                <input type="text" name="#" id="answer" class="p1-comm" placeholder="comments"> <br>
+                <input type="text" name="#" id="answer" class="p2-comm" placeholder="comments"> <br>
+                <input type="text" name="#" id="answer" class="p3-comm" placeholder="comments"> <br>
+                <input type="text" name="#" id="answer" class="viewer-comm" placeholder="comments"> <br>
+            </div>
+            <!-- ☆★ ♥️🏆💪🏿✋-->
+
+            <div class="p1num-ctn inactive content">
                 <input type="button" value="1" onclick="forms.screen1.value+='1'">
                 <input type="button" value="2" onclick="forms.screen1.value+='2'">
                 <input type="button" value="3" onclick="forms.screen1.value+='3'">
@@ -430,13 +430,17 @@ input:hover{
                 <input type="button" value="7" onclick="forms.screen1.value+='7'">
                 <input type="button" value="8" onclick="forms.screen1.value+='8'">
                 <input type="button" value="9" onclick="forms.screen1.value+='9'">
-                <input type="button" value="2 Jokers *" onclick="forms.screen1.value+='*'">
-                <input type="button" value="*" onclick="forms.screen1.value+='.*'">
+                <input type="button" value="↓" onclick="forms.screen1.value+='↓'">
+                <input type="button" value="J★" onclick="forms.screen1.value+='★'">
                 <input type="button" value="0" onclick="forms.screen1.value+='0'">
+                <input type="button" value="★" onclick="forms.screen1.value+='.★'">
+                <input type="button" value="&#x2665" onclick="forms.screen1.value+='&#x2665'">
+                <input type="button" value="✋" onclick="forms.screen1.value+='✋'">
+                <input type="button" value="💪" onclick="forms.screen1.value+='💪'">
                 <input type="button" value="v" onclick="hideBtns()">
                 <input type="button" value="C/E" class="clear-input1">
             </div>
-            <div class="p2num-ctn inactive">
+            <div class="p2num-ctn inactive content">
                 <input type="button" value="1" onclick="forms.screen2.value+='1'">
                 <input type="button" value="2" onclick="forms.screen2.value+='2'">
                 <input type="button" value="3" onclick="forms.screen2.value+='3'">
@@ -448,13 +452,17 @@ input:hover{
                 <input type="button" value="7" onclick="forms.screen2.value+='7'">
                 <input type="button" value="8" onclick="forms.screen2.value+='8'">
                 <input type="button" value="9" onclick="forms.screen2.value+='9'">
-                <input type="button" value="2 Jokers *" onclick="forms.screen2.value+='*'">
-                <input type="button" value="*" onclick="forms.screen2.value+='.*'">
+                <input type="button" value="↓" onclick="forms.screen2.value+='↓'">
+                <input type="button" value="J★" onclick="forms.screen2.value+='★'">
                 <input type="button" value="0" onclick="forms.screen2.value+='0'">
+                <input type="button" value="★" onclick="forms.screen2.value+='.★'">
+                <input type="button" value="&#x2665" onclick="forms.screen2.value+='&#x2665'">
+                <input type="button" value="✋" onclick="forms.screen2.value+='✋'">
+                <input type="button" value="💪" onclick="forms.screen2.value+='💪'">
                 <input type="button" value="v" onclick="hideBtns()">
                 <input type="button" value="C/E" class="clear-input2">
             </div>
-            <div class="p3num-ctn inactive">
+            <div class="p3num-ctn inactive content">
                 <input type="button" value="1" onclick="forms.screen3.value+='1'">
                 <input type="button" value="2" onclick="forms.screen3.value+='2'">
                 <input type="button" value="3" onclick="forms.screen3.value+='3'">
@@ -466,12 +474,15 @@ input:hover{
                 <input type="button" value="7" onclick="forms.screen3.value+='7'">
                 <input type="button" value="8" onclick="forms.screen3.value+='8'">
                 <input type="button" value="9" onclick="forms.screen3.value+='9'">
-                <input type="button" value="2 Jokers *" onclick="forms.screen3.value+='*'">
-                <input type="button" value="*" onclick="forms.screen3.value+='.*'">
+                <input type="button" value="↓" onclick="forms.screen3.value+='↓'">
+                <input type="button" value="J★" onclick="forms.screen3.value+='★'">
                 <input type="button" value="0" onclick="forms.screen3.value+='0'">
+                <input type="button" value="★" onclick="forms.screen3.value+='.★'">
+                <input type="button" value="&#x2665" onclick="forms.screen3.value+='&#x2665'">
+                <input type="button" value="✋" onclick="forms.screen3.value+='✋'">
+                <input type="button" value="💪" onclick="forms.screen3.value+='💪'">
                 <input type="button" value="v" onclick="hideBtns()">
                 <input type="button" value="C/E" class="clear-input3">
-
             </div>
         </div>
     </form>
@@ -483,6 +494,7 @@ const enter = JSON.parse(localStorage.getItem('enter'))||[]
 const entertotal = JSON.parse(localStorage.getItem('entertotal'))||[]
 const winorlose = JSON.parse(localStorage.getItem('winorlose'))||[]
 const save = JSON.parse(localStorage.getItem('save'))||[]
+const viwercomm = JSON.parse(localStorage.getItem('viwercomm'))||[]
 
 const Setting=()=>{
     let btn = document.querySelector('.setting-btn')
@@ -490,19 +502,17 @@ const Setting=()=>{
                 btn.innerText = "Back"
             document.querySelector('.lists-ctn').classList.remove('inactive')
         }else{
-            btn.innerText = "Setting"
-            document.querySelector('.lists-ctn').classList.add('inactive')
-            document.querySelector('.create-ctn').classList.add('inactive')
+            window.location.reload()
             }
 };
 const newGame=()=>{
-    document.querySelector('.lists-ctn').classList.add('inactive')
-        if(confirm('Game အသစ် စမှာလား?')){
+    document.querySelector('.keyboard').classList.add('inactive')
+    if(confirm('Game အသစ် စမှာလား?')){
+            document.querySelector('.lists-ctn').classList.add('inactive')
             document.querySelector('.create-ctn').classList.remove('inactive')
             localStorage.removeItem('create')
             localStorage.removeItem('enter')
         }
-
 };
 const seeAll=()=>{
     if(save == ''){
@@ -511,15 +521,11 @@ const seeAll=()=>{
     }
     document.querySelector('.save-display').classList.remove('inactive')
     document.querySelector('.container').classList.add('inactive')
+    document.querySelector('.keyboard').classList.add('inactive')
 };
 const Reset=()=>{
     if(confirm('ပွဲစဉ်အားလုံးစာရင်း ဖျက်မှာလား?')){
-        localStorage.removeItem('finalWin')
-        localStorage.removeItem('winorlose')
-        localStorage.removeItem('entertotal')
-        localStorage.removeItem('create')
-        localStorage.removeItem('enter')
-        localStorage.removeItem('save')
+        localStorage.clear()
     }
     window.location.reload()
 }
@@ -545,22 +551,7 @@ const createDisplay=()=>{
         document.querySelector('.player3').placeholder = item.p3name
         document.querySelector('.game-name').textContent = item.gamename
     document.querySelector('.bkp-name').textContent = `Brake = ${item.BKPs}`
-    document.querySelector('.stv-name').textContent = `1* = ${item.STV}`
-    if(item.p1comments == ''){
-        document.querySelector('.p1comments').textContent = ''
-    }else{
-        document.querySelector('.p1comments').textContent = `${item.p1name}   said, " ${item.p1comments} "`
-    };
-    if(item.p2comments == ''){
-        document.querySelector('.p2comments').textContent = ''
-    }else{
-        document.querySelector('.p2comments').textContent = `${item.p2name}   said, " ${item.p2comments} "`
-    };
-    if(item.p3comments == ''){
-        document.querySelector('.p3comments').textContent = ''
-    }else{
-        document.querySelector('.p3comments').textContent = `${item.p3name}    said, " ${item.p3comments} "`
-    };
+    document.querySelector('.stv-name').textContent = `1★ = ${item.STV}`
       })
 };
 createDisplay()
@@ -572,27 +563,31 @@ const Create=()=>{
     let date = Now.toLocaleString()
     let gamename = document.querySelector('.gamename-input').value;
     let p1name = document.querySelector('.p1name-input').value;
-    let p1comments = document.querySelector('.p1comments-input').value;
     let p2name = document.querySelector('.p2name-input').value;
-    let p2comments = document.querySelector('.p2comments-input').value;
     let p3name = document.querySelector('.p3name-input').value;
-    let p3comments = document.querySelector('.p3comments-input').value;
     let BKPs = document.querySelector('.bkp-input').value;
     let STV = document.querySelector('.stv-input').value;
 
-    if(p1name == "" || p2name == "" || p3name ==""){
-        alert('Please enter players name!')
+    if(p1name ==""){
+        p1name = 'Player1'
+    }
+    if(p2name ==""){
+        p2name = 'Player2'
+    }
+    if(p3name ==""){
+        p3name = 'Player3'
     }
     if(STV == ''){
-        alert('Please enter your bet!')
+        STV = 1000
+    }
+    if(BKPs > 1500){
+        BKPs = BKPs
     }
     if(create.length>0){
                 create.splice(create.length-1)
                 localStorage.setItem('create',JSON.stringify(create))
             }
-    create.push({Date:date,p1name:p1name,p2name:p2name,p3name:p3name,gamename:gamename,BKPs:BKPs,STV:STV,
-                p1name:p1name,p2name:p2name,p3name:p3name,
-               p1comments:p1comments,p2comments:p2comments,p3comments:p3comments})
+    create.push({Date:date,p1name:p1name,p2name:p2name,p3name:p3name,gamename:gamename,BKPs:BKPs,STV:STV,})
     localStorage.setItem('create',JSON.stringify(create))
 
     window.location.reload()
@@ -607,32 +602,36 @@ createInputs.forEach((btn)=>{
         btn.style.backgroundColor = 'white'
     })
 });
+
+const inputBg = document.querySelectorAll('#answer')
+const KBs = document.querySelectorAll('.content')
+inputBg.forEach((bg, index) => {
+bg.addEventListener("click", () => {
+  inputBg.forEach((bg) => {
+    bg.style.backgroundColor = 'inherit';
+  });
+  bg.style.backgroundColor='white';
+});
+});
+
 const chooseInput=()=>{
     document.querySelector('.player1').addEventListener('click',()=>{
-        document.querySelector('.player1').style.backgroundColor = 'white'
-        document.querySelector('.player2').style.backgroundColor = 'inherit'
-        document.querySelector('.player3').style.backgroundColor = 'inherit'
         document.querySelector('.p1num-ctn').classList.remove('inactive')
         document.querySelector('.p2num-ctn').classList.add('inactive')
         document.querySelector('.p3num-ctn').classList.add('inactive')
     })
     document.querySelector('.player2').addEventListener('click',()=>{
-        document.querySelector('.player2').style.backgroundColor = 'white'
-        document.querySelector('.player1').style.backgroundColor = 'inherit'
-        document.querySelector('.player3').style.backgroundColor = 'inherit'
         document.querySelector('.p2num-ctn').classList.remove('inactive')
         document.querySelector('.p1num-ctn').classList.add('inactive')
         document.querySelector('.p3num-ctn').classList.add('inactive')
     })
     document.querySelector('.player3').addEventListener('click',()=>{
-        document.querySelector('.player3').style.backgroundColor = 'white'
-        document.querySelector('.player1').style.backgroundColor = 'inherit'
-        document.querySelector('.player2').style.backgroundColor = 'inherit'
         document.querySelector('.p3num-ctn').classList.remove('inactive')
         document.querySelector('.p2num-ctn').classList.add('inactive')
         document.querySelector('.p1num-ctn').classList.add('inactive')
     })
 };
+
 chooseInput()
 const hideBtns=()=>{
     document.querySelector('.p1num-ctn').classList.add('inactive')
@@ -674,15 +673,23 @@ const enterDisplay = ()=>{
     enter.forEach((item,index)=>{
         html +="<div class='item-div'>"
         html +="<div class='no'>"+ (index+1)+"." +"</div>" 
-        html +="<div class='p1'id='p1-div'>"+item.P1P + "</div>" 
-        html +="<div class='p2'>"+item.P2P+"</div>"
-        html +="<div class='p3'>"+item.P3P+"</div>"
+        html +="<div class='p1'id='p1-div'>"+item.P1P +'<p>'+item.p1Comm+'</p>' +"</div>" 
+        html +="<div class='p2'>"+item.P2P+'<p>'+item.p2Comm+'</p>' +"</div>"
+        html +="<div class='p3'>"+item.P3P+'<p>'+item.p3Comm+'</p>' +"</div>"
         html +='<div class="edit-div"><button onclick="Edit('+index+')" class="edit-btn">Edit</button></div>'
         html +="</div>"
     });
     document.querySelector('.enter-display').innerHTML = html
 };
+
 enterDisplay()
+
+viwercomm.forEach(comm=>{
+    const li = document.createElement('li')
+    li.innerText= comm.vcomment
+    document.querySelector('.other-com-ctn').appendChild(li)
+})
+
 const Enter=()=>{
     if(create == ''){
         alert('ပွဲစဉ်အသစ် စာရင်းသွင်းပါ')
@@ -692,13 +699,19 @@ const Enter=()=>{
     let p1point = document.querySelector('.player1').value
     let p2point = document.querySelector('.player2').value
     let p3point = document.querySelector('.player3').value
+    let p1Comm = document.querySelector('.p1-comm').value
+    let p2Comm = document.querySelector('.p2-comm').value
+    let p3Comm = document.querySelector('.p3-comm').value
+    let vcomment = document.querySelector('.viewer-comm').value
     if(p1point == '' || p2point == '' || p3point == ''){
         alert('Enter players points')
         return false
     }
             
-    enter.push({P1P:p1point,P2P:p2point,P3P:p3point})
+    enter.push({P1P:p1point,P2P:p2point,P3P:p3point,p1Comm:p1Comm,p2Comm:p2Comm,p3Comm:p3Comm})
+    viwercomm.push({vcomment:vcomment})
     localStorage.setItem('enter',JSON.stringify(enter))
+    localStorage.setItem('viwercomm',JSON.stringify(viwercomm))
 
     let bkpoints = create[0].BKPs
     let starvalue = create[0].STV
@@ -759,9 +772,9 @@ const saveDisplay =()=>{
         let saveTotal = document.createElement('div')
         saveTotal.setAttribute('class','save-total')
         saveTotal.innerHTML = `<div>Total</div>
-        <div>${save[i][save[i].length-2].p1Tp}(${save[i][save[i].length-2].p1Ts}*)</div>
-        <div>${save[i][save[i].length-2].p2Tp}(${save[i][save[i].length-2].p2Ts}*)</div>
-        <div>${save[i][save[i].length-2].p3Tp}(${save[i][save[i].length-2].p3Ts}*)</div>`
+        <div>${save[i][save[i].length-2].p1Tp}(${save[i][save[i].length-2].p1Ts}★)</div>
+        <div>${save[i][save[i].length-2].p2Tp}(${save[i][save[i].length-2].p2Ts}★)</div>
+        <div>${save[i][save[i].length-2].p3Tp}(${save[i][save[i].length-2].p3Ts}★)</div>`
         let winLose =document.createElement('div')
         winLose.setAttribute('class','winlose-div')
         winLose.innerHTML =`
@@ -776,10 +789,10 @@ const saveDisplay =()=>{
         saveDivs.forEach((div)=>{
             for(let j=2; j< save[i].length; j++){
                 html +="<div class='save-item'>"
-                html +="<div>"+(j-1)+'.'+"</div>"
-                html +="<div>"+save[i][j].P1P+"</div>"
-                html +="<div>"+save[i][j].P2P+"</div>"
-                html +="<div>"+save[i][j].P3P+"</div>"
+                html +="<div class='no'>"+(j-1)+'.'+"</div>"
+                html +="<div>"+save[i][j].P1P+'<p>'+save[i][j].p1Comm+'</p>'+"</div>"
+                html +="<div>"+save[i][j].P2P+'<p>'+save[i][j].p2Comm+'</p>'+"</div>"
+                html +="<div>"+save[i][j].P3P+'<p>'+save[i][j].p3Comm+'</p>'+"</div>"
                 html +="</div>"
             }
             div.innerHTML = html
@@ -803,6 +816,7 @@ const Save=()=>{
     localStorage.removeItem('winorlose')
     localStorage.removeItem('entertotal')
     localStorage.removeItem('enter')
+    localStorage.removeItem('viwercomm')
     window.location.reload()
 }
   let p1Ts = 0
@@ -819,13 +833,13 @@ const Save=()=>{
     },0);
 
     enter.forEach((obj)=>{
-        p1Ts +=(obj.P1P.match(/\*/g) || [] ).length;
-        p2Ts +=(obj.P2P.match(/\*/g) || [] ).length;
-        p3Ts +=(obj.P3P.match(/\*/g) || [] ).length;
+        p1Ts +=(obj.P1P.match(/\★/g) || [] ).length;
+        p2Ts +=(obj.P2P.match(/\★/g) || [] ).length;
+        p3Ts +=(obj.P3P.match(/\★/g) || [] ).length;
     });
-document.querySelector('.p1total-text').innerText = `${p1Tp}(${p1Ts}*)`
-document.querySelector('.p2total-text').innerText = `${p2Tp}(${p2Ts}*)`
-document.querySelector('.p3total-text').innerText = `${p3Tp}(${p3Ts}*)`
+document.querySelector('.p1total-text').innerText = `${p1Tp}(${p1Ts}★)`
+document.querySelector('.p2total-text').innerText = `${p2Tp}(${p2Ts}★)`
+document.querySelector('.p3total-text').innerText = `${p3Tp}(${p3Ts}★)`
 
 const bkpoints = 1500
 const checkPointsWinner=()=>{
@@ -902,7 +916,7 @@ const checkLastWinner=()=>{
     let starvalue = create[0].STV
     if(p1Tp>bkpoints || p2Tp>bkpoints || p3Tp>bkpoints){
         let obj = enter[enter.length -1]
-        if(p1Tp > bkpoints && obj.P1P.includes('.*')){
+        if(p1Tp > bkpoints && obj.P1P.includes('.★')){
            p1win = parseInt((bkpoints/100) + 5 + p1Ts)
            p2win = parseInt(Math.round(p2Tp/100) + p2Ts)
            p3win = parseInt(Math.round(p3Tp/100) + p3Ts)
@@ -922,9 +936,9 @@ const checkLastWinner=()=>{
                             trdName:third,trdPrize:p3Win_Total})
           localStorage.setItem('winorlose',JSON.stringify(winorlose))  
 
-              console.log(p1win,p2win,p3win,obj.P1P.includes('.*'))
+              console.log(p1win,p2win,p3win,obj.P1P.includes('.★'))
             }
-            if(p2Tp > bkpoints && obj.P2P.includes('.*')){
+            if(p2Tp > bkpoints && obj.P2P.includes('.★')){
             p2win = parseInt((bkpoints/100) + 5 + p2Ts)
             p1win = parseInt(Math.round(p1Tp/100) + p1Ts)
             p3win = parseInt(Math.round(p3Tp/100) + p3Ts)
@@ -944,9 +958,9 @@ const checkLastWinner=()=>{
                 trdName:third, trdPrize:p3Win_Total})
           localStorage.setItem('winorlose',JSON.stringify(winorlose))  
 
-              console.log(p1win,p2win,p3win,obj.P2P.includes('.*'))
+              console.log(p1win,p2win,p3win,obj.P2P.includes('.★'))
             }
-            if(p3Tp > bkpoints && obj.P3P.includes('.*')){
+            if(p3Tp > bkpoints && obj.P3P.includes('.★')){
                 let winner = create[0].p3name
                 let second = create[0].p1name
                 let third = create[0].p2name
@@ -967,7 +981,7 @@ const checkLastWinner=()=>{
                 ,})
              localStorage.setItem('winorlose',JSON.stringify(winorlose))  
 
-              console.log(p1win,p2win,p3win,obj.P3P.includes('.*'))
+              console.log(p1win,p2win,p3win,obj.P3P.includes('.★'))
             }
     }else{
       checkPointsWinner()
@@ -1051,7 +1065,7 @@ const checkEqulPoints=()=>{
 
     let starvalue = create[0].STV
     document.querySelector('.bkp-div').textContent = `Brake points = ${bkpoints}.`
-    document.querySelector('.stv-div').textContent = `1* = ${starvalue}/ks.`
+    document.querySelector('.stv-div').textContent = `1★ = ${starvalue}/ks.`
         checkEqulPoints()
         checkPointsWinner()
         checkLastWinner()
